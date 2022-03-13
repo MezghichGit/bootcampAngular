@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ams';
+  title = 'AMS Project';
+
+  formateur:string="Mohmed Amine MEZGHICH";
+  bootcamp:string[]=["springboot","angular","agile","devops"];
+  estHybride:boolean=true;
+  prix:number=450;
 }
