@@ -5,12 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopicsPipe } from './pipes/topics.pipe';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddProviderComponent } from './add-provider/add-provider.component';
+import { ListProviderComponent } from './list-provider/list-provider.component';
+import { UpdateProviderComponent } from './update-provider/update-provider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicsPipe,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    AddProviderComponent,
+    ListProviderComponent,
+    UpdateProviderComponent
   ],
   imports: [
     BrowserModule,
