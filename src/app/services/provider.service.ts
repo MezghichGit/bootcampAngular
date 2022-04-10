@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
 @Injectable({
@@ -7,10 +7,18 @@ import { environment } from "../../environments/environment";
 export class ProviderService {
   urlProviders = environment.urlProvider;
   provider: any;
+
+  username = sessionStorage.getItem('username');
+  password = sessionStorage.getItem('password');
+
+
   constructor(private Http: HttpClient) { }
 
   listProviders() {
-    return this.Http.get(this.urlProviders + '/list');
+
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ':' + this.password) });
+    //return this.Http.get(this.urlProviders + '/list');
+    return this.Http.get(this.urlProviders + '/list', { headers });
   }
   createProvider(myform) {
     this.provider = {
@@ -18,16 +26,20 @@ export class ProviderService {
       'email': myform.value.providerEmail,
       'address': myform.value.providerAdress
     }
-    return this.Http.post(this.urlProviders + '/add', this.provider);
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ':' + this.password) });
+    return this.Http.post(this.urlProviders + '/add', this.provider, { headers });
   }
 
   updateProvider(myObj) {
-    return this.Http.put(this.urlProviders + '/' + myObj['id'], myObj);
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ':' + this.password) });
+    return this.Http.put(this.urlProviders + '/' + myObj['id'], myObj, { headers });
   }
   deleteProvider(id:number) {
-    return this.Http.delete(this.urlProviders + '/' + id)
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ':' + this.password) });
+    return this.Http.delete(this.urlProviders + '/' + id, { headers })
   }
   getProvider(id) {
-    return this.Http.get(this.urlProviders + '/' + id)
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ':' + this.password) });
+    return this.Http.get(this.urlProviders + '/' + id, { headers })
   }
 }
