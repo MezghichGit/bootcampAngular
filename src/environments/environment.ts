@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlProvider:"http://127.0.0.1:8080/providers"
+  urlProvider:"http://127.0.0.1:81/providers"
 };
 
 /*
